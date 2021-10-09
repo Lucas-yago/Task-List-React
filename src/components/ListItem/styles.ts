@@ -14,6 +14,7 @@ export const Container = styled.div( ({done}: ContainerProps)=>(
     align-items: center;
     text-decoration: ${done ? 'line-through' : 'initial'};
 
+
     input{
         width: 25px;
         height: 25px;
@@ -23,7 +24,6 @@ export const Container = styled.div( ({done}: ContainerProps)=>(
     label{
         color: #CCC;
     }
-
 `
 ));
 
