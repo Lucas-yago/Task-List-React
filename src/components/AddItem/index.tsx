@@ -2,29 +2,29 @@
 import { useState, KeyboardEvent } from 'react';
 import * as C from './styles';
 
-type EnterProps ={
+type EnterProps = {
     onEnter: (taskName: string) => void;
 }
 
-export const AddItem = ({onEnter}: EnterProps)=>{
+export const AddItem = ({ onEnter }: EnterProps) => {
 
-    const[inputText, setInputText] = useState('');
+    const [inputText, setInputText] = useState('');
 
-    const handleKeyUp = (e: KeyboardEvent)=>{
-        if(e.code === 'Enter' && inputText !== ''){
+    const handleKeyUp = (e: KeyboardEvent) => {
+        if (e.code === 'Enter' && inputText !== '') {
             onEnter(inputText);
-            setInputText('');   
+            setInputText('');
         }
     };
-    
-    return(
+
+    return (
         <C.Container>
             <div className="image">➕</div>
-            <input 
+            <input
                 type="text"
-                placeholder = "Adicione uma nova tarefa"
+                placeholder="Adicione uma nova tarefa"
                 value={inputText}
-                onChange={e=>setInputText(e.target.value)}
+                onChange={e => setInputText(e.target.value)}
                 onKeyUp={handleKeyUp}
             />
         </C.Container>

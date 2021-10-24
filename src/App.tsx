@@ -6,8 +6,8 @@ import { AddItem } from './components/AddItem';
 
 const App = () => {
   const [list, setList] = useState<Item[]>([]);
-  
-  const handleAddTask = (taskName: string)=>{
+
+  const handleAddTask = (taskName: string) => {
     let newList = [...list];
     newList.unshift({
       id: list.length + 1,
@@ -16,27 +16,28 @@ const App = () => {
     })
     setList(newList)
     console.log(newList)
-    localStorage.setItem("newList",JSON.stringify(newList));
+    localStorage.setItem("newList", JSON.stringify(newList));
   }
 
   const handleTaskChange = (id: number, done: boolean) => {
     let newList = [...list];
-    for(let i in newList) {
-      if(newList[i].id === id) {
+    for (let i in newList) {
+      if (newList[i].id === id) {
         newList[i].done = done;
       }
     }
+    localStorage.setItem("newList", JSON.stringify(newList));
     setList(newList);
   }
 
-  useEffect(()=>{
-    const tasks = JSON.parse(localStorage.getItem("newList") || "[]" ); 
-    setList(tasks) 
-    },[]
-    
+  useEffect(() => {
+    const tasks = JSON.parse(localStorage.getItem("newList") || "[]");
+    setList(tasks)
+    console.log("Useefect")
+  }, []
   );
 
-  return(
+  return (
     <C.Container>
       <C.Area>
         <C.Header>Lista de Tarefas</C.Header>
@@ -44,8 +45,8 @@ const App = () => {
         <AddItem onEnter={handleAddTask} />
 
         <div id="listBox">
-          
-          {list.map((item, index)=>(
+
+          {list.map((item, index) => (
             <ListItem key={index} item={item} onChange={handleTaskChange} />
 
           ))}
