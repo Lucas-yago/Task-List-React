@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as C from './App.styles';
 import { Item } from './types/item';
 import { ListItem } from './components/ListItem';
@@ -9,12 +9,14 @@ const App = () => {
   
   const handleAddTask = (taskName: string)=>{
     let newList = [...list];
-    newList.push({
+    newList.unshift({
       id: list.length + 1,
       name: taskName,
       done: false
     })
     setList(newList)
+    console.log(newList)
+    localStorage.setItem("newList",JSON.stringify(newList));
   }
 
   const handleTaskChange = (id: number, done: boolean) => {
@@ -24,10 +26,15 @@ const App = () => {
         newList[i].done = done;
       }
     }
-      setList(newList);
+    setList(newList);
   }
 
-
+  useEffect(()=>{
+    const tasks = JSON.parse(localStorage.getItem("newList") || "[]" ); 
+    setList(tasks) 
+    },[]
+    
+  );
 
   return(
     <C.Container>
@@ -36,9 +43,13 @@ const App = () => {
 
         <AddItem onEnter={handleAddTask} />
 
-        {list.map((item, index)=>(
-          <ListItem key={index} item={item} onChange={handleTaskChange}/>
-        ))}
+        <div id="listBox">
+          
+          {list.map((item, index)=>(
+            <ListItem key={index} item={item} onChange={handleTaskChange} />
+
+          ))}
+        </div>
 
       </C.Area>
     </C.Container>

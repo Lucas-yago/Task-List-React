@@ -16,7 +16,7 @@ export const AddItem = ({onEnter}: EnterProps)=>{
             setInputText('');   
         }
     };
-
+    
     return(
         <C.Container>
             <div className="image">➕</div>
@@ -26,7 +26,7 @@ export const AddItem = ({onEnter}: EnterProps)=>{
                 value={inputText}
                 onChange={e=>setInputText(e.target.value)}
                 onKeyUp={handleKeyUp}
-             />
+            />
         </C.Container>
     );
 };

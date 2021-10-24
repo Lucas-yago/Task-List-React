@@ -4,7 +4,10 @@ import{Item} from '../../types/item';
 type Props = {
     item: Item;
     onChange: (id: number, done: boolean) => void;
-}
+
+};
+
+     
 
 export const ListItem = ({item, onChange}: Props) =>{
 
