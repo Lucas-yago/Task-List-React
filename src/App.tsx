@@ -15,7 +15,6 @@ const App = () => {
       done: false
     })
     setList(newList)
-    console.log(newList)
     localStorage.setItem("newList", JSON.stringify(newList));
   }
 
@@ -33,7 +32,6 @@ const App = () => {
   useEffect(() => {
     const tasks = JSON.parse(localStorage.getItem("newList") || "[]");
     setList(tasks)
-    console.log("Useefect")
   }, []
   );
 

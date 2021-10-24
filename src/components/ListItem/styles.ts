@@ -13,6 +13,8 @@ export const Container = styled.div( ({done}: ContainerProps)=>(
     margin-bottom: 10px;
     align-items: center;
     text-decoration: ${done ? 'line-through' : 'initial'};
+    text-decoration-color: #D3D3D3;
+
 
     input{
         width: 25px;
