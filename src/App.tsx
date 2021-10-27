@@ -44,6 +44,8 @@ const App = () => {
 
 
   useEffect(() => {
+    document.title = 'Task List';
+
     const tasks = JSON.parse(localStorage.getItem("taskList") || "[]");
     setList(tasks)
   }, []
