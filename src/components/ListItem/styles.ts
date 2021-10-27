@@ -8,23 +8,31 @@ export const Container = styled.div( ({done}: ContainerProps)=>(
     `
     display: flex;
     background-color:  #20212C;
-    padding: 10px;
+    padding: 10px 2px 10px 10px ;
     border-radius: 10px;
     margin-bottom: 10px;
     align-items: center;
-    text-decoration: ${done ? 'line-through' : 'initial'};
-    text-decoration-color: #D3D3D3;
+
 
 
     input{
-        width: 25px;
-        height: 25px;
-        margin-right: 10px;    
+        min-width: 20px;
+        min-height: 20px;
+        margin-right: 10px;          
+    }
+
+
+    .label-container{
+        display: flex;
+        flex-basis: 100%;
+        text-decoration: ${done ? 'line-through' : 'initial'};
+        text-decoration-color: #D3D3D3;    
     }
 
     label{
         color: #CCC;
     }
+
 `
 ));
 

@@ -9,13 +9,13 @@ const App = () => {
 
   const handleAddTask = (taskName: string) => {
     let newList = [...list];
-    newList.unshift({
+    newList.push({
       id: list.length + 1,
       name: taskName,
       done: false
     })
     setList(newList)
-    localStorage.setItem("newList", JSON.stringify(newList));
+    localStorage.setItem("taskList", JSON.stringify(newList));
   }
 
   const handleTaskChange = (id: number, done: boolean) => {
@@ -25,12 +25,26 @@ const App = () => {
         newList[i].done = done;
       }
     }
-    localStorage.setItem("newList", JSON.stringify(newList));
+    localStorage.setItem("taskList", JSON.stringify(newList));
     setList(newList);
   }
 
+  const handleRemoveTask = (id: number) => {
+    let newList = [...list];
+    newList.forEach((e) => {
+      if (e.id === id) {
+        newList.splice(newList.indexOf(e), 1)
+        localStorage.setItem("taskList", JSON.stringify(newList));
+      }
+      setList(newList);
+    })
+
+    console.log('removendo id:', id)
+  }
+
+
   useEffect(() => {
-    const tasks = JSON.parse(localStorage.getItem("newList") || "[]");
+    const tasks = JSON.parse(localStorage.getItem("taskList") || "[]");
     setList(tasks)
   }, []
   );
@@ -45,9 +59,9 @@ const App = () => {
         <div id="listBox">
 
           {list.map((item, index) => (
-            <ListItem key={index} item={item} onChange={handleTaskChange} />
-
+            <ListItem key={index} item={item} onChange={handleTaskChange} handleRemoveTask={handleRemoveTask} />
           ))}
+
         </div>
 
       </C.Area>

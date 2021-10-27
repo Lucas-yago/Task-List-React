@@ -5,6 +5,12 @@ export const Container = styled.div`
     color: #797A81;
     min-height: 100vh;
 
+    
+    #listBox{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
 `;
 
 export const Area = styled.div`
