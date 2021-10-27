@@ -10,7 +10,7 @@ const App = () => {
   const handleAddTask = (taskName: string) => {
     let newList = [...list];
     newList.push({
-      id: list.length + 1,
+      id: Math.floor(Math.random() * 10000),
       name: taskName,
       done: false
     })
@@ -39,9 +39,7 @@ const App = () => {
       setList(newList);
     })
 
-    console.log('removendo id:', id)
   }
-
 
   useEffect(() => {
     document.title = 'Task List';
